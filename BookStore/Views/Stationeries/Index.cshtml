@@ -48,10 +48,12 @@
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Brief)
+                    @Html.Raw(@item.Brief)
+                    @*@Html.DisplayFor(modelItem => item.Brief)*@
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Img)
+                    <img class="img-thumbnail" src="@item.Img" style="width:100px;height:auto;"/>
+                    @*@Html.DisplayFor(modelItem => item.Img)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Quantity)
