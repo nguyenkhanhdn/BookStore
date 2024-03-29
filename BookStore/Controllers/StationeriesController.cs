@@ -17,7 +17,8 @@ namespace BookStore.Controllers
         // GET: Stationeries
         public ActionResult Index()
         {
-            return View(db.Stationeries.ToList());
+            var stationeries = db.Stationeries.Include(s => s.Category);
+            return View(stationeries.ToList());
         }
 
         // GET: Stationeries/Details/5
@@ -38,6 +39,7 @@ namespace BookStore.Controllers
         // GET: Stationeries/Create
         public ActionResult Create()
         {
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName");
             return View();
         }
 
@@ -46,7 +48,8 @@ namespace BookStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Description,Img,Quantity,Price")] Stationery stationery)
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "Id,Name,Brief,Img,Quantity,Price,CategoryId")] Stationery stationery)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +58,7 @@ namespace BookStore.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", stationery.CategoryId);
             return View(stationery);
         }
 
@@ -70,6 +74,7 @@ namespace BookStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", stationery.CategoryId);
             return View(stationery);
         }
 
@@ -78,7 +83,8 @@ namespace BookStore.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Description,Img,Quantity,Price")] Stationery stationery)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "Id,Name,Brief,Img,Quantity,Price,CategoryId")] Stationery stationery)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +92,7 @@ namespace BookStore.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CategoryId = new SelectList(db.Categories, "Id", "CategoryName", stationery.CategoryId);
             return View(stationery);
         }
 
