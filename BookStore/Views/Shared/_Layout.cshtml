@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -32,52 +33,114 @@
 <body>
     <!-- ======= Header ======= -->
     <header id="header" class="fixed-top">
+
         <div class="container d-flex align-items-center">
-            <h1 class="logo me-auto"><a href="index.html">BookStore.vn</a></h1>
+            <h1 class="logo me-auto"><a href="index.html">Sách Việt</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="active" href="~/Home">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="courses.html">Courses</a></li>
-                    <li><a href="trainers.html">Trainers</a></li>
-                    <li><a href="events.html">Events</a></li>
-                    <li><a href="pricing.html">Pricing</a></li>
-
+                    <li><a class="active" href="~/Home">Trang Chủ</a></li>
                     <li class="dropdown">
-                        <a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
+                        <a href="#"><span>Sách Giáo Khoa</span> <i class="bi bi-chevron-down"></i></a>
                         <ul>
-                            <li><a href="#">Drop Down 1</a></li>
                             <li class="dropdown">
-                                <a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
+                                <a href="#"><span>Kết Nối Tri Thức</span> <i class="bi bi-chevron-right"></i></a>
                                 <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
-                                    <li><a href="#">Deep Drop Down 3</a></li>
-                                    <li><a href="#">Deep Drop Down 4</a></li>
-                                    <li><a href="#">Deep Drop Down 5</a></li>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Drop Down 2</a></li>
-                            <li><a href="#">Drop Down 3</a></li>
-                            <li><a href="#">Drop Down 4</a></li>
+                            <li class="dropdown">
+                                <a href="#"><span>Chân Trời Sáng Tạo</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Sách Bài Tập</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#"><span>Kết Nối Tri Thức</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Chân Trời Sáng Tạo</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#"><span>File PDF</span> <i class="bi bi-chevron-down"></i></a>
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#"><span>Kết Nối Tri Thức</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#"><span>Chân Trời Sáng Tạo</span> <i class="bi bi-chevron-right"></i></a>
+                                <ul>
+                                    <li><a href="#">Lớp 6</a></li>
+                                    <li><a href="#">Lớp 7</a></li>
+                                    <li><a href="#">Lớp 8</a></li>
+                                    <li><a href="#">Lớp 9</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a class="" href="#">Dụng Cụ Học Tập</a></li>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                                <li>
+                                    @Html.ActionLink("Hi, " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                                </li>
+                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                        }
+                    }
+                    else
+                    {
+                            <li>@Html.ActionLink("Đăng ký", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                            <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    }
                 </ul>
+
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
-
-            <a href="courses.html" class="get-started-btn">Get Started</a>
 
         </div>
     </header><!-- End Header -->
     <!-- ======= Hero Section ======= -->
     <section id="hero" class="d-flex justify-content-center align-items-center">
         <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-            <h1>Learning Today,<br>Leading Tomorrow</h1>
-            <h2>We are team of talented designers making websites with Bootstrap</h2>
+            <h1>HỌC, HỌC NỮA, HỌC MÃI!</h1>
+            <h2>Vladimir Ilyich Lenin</h2>
             <a href="courses.html" class="btn-get-started">Get Started</a>
         </div>
     </section><!-- End Hero -->
@@ -146,7 +209,7 @@
                     &copy; Copyright <strong><span>BookStore.vn</span></strong>. All Rights Reserved
                 </div>
                 <div class="credits">
-                   Designed by <a href="https://BookStore.vn/">BookStore.vn</a>
+                    Designed by <a href="https://BookStore.vn/">BookStore.vn</a>
                 </div>
             </div>
             <div class="social-links text-center text-md-right pt-3 pt-md-0">
@@ -170,7 +233,7 @@
     <script src="~/assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-    @RenderSection("Scripts",required:false)
+    <script src="~/assets/js/main.js"></script>
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
