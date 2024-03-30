@@ -20,6 +20,6 @@ namespace BookStore.Models
         [Display(Name = "Ảnh đại diện")]
         public string Img { get; set; }
 
-        public ICollection<Stationery> Stationeries { get; set; }
+        public virtual ICollection<Stationery> Stationeries { get; set; }
     }
 }

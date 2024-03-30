@@ -17,7 +17,7 @@ namespace BookStore.Controllers
         // GET: Stationeries
         public ActionResult Index()
         {
-            var stationeries = db.Stationeries.Include(s => s.Category);
+            var stationeries = db.Stationeries.Include(s => s.Category).OrderByDescending(s=>s.Id);
             return View(stationeries.ToList());
         }
 
