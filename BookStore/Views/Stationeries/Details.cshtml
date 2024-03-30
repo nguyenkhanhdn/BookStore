@@ -32,7 +32,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Brief)
+            @Html.Raw(Model.Brief)
+            @*@Html.DisplayFor(model => model.Brief)*@
         </dd>
 
         <dt>
@@ -40,7 +41,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Img)
+            <img class="img-thumbnail" src="@Model.Img"  style="width:300px;height:auto;"/>
+            @*@Html.DisplayFor(model => model.Img)*@
         </dd>
 
         <dt>

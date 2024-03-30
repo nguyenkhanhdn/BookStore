@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace BookStore.Controllers
 {
+    [Authorize(Users ="admin@gmail.com")]
     public class AdminController : Controller
     {
         // GET: Admin

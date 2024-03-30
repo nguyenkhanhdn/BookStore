@@ -198,6 +198,10 @@
     <Compile Include="Migrations\202403290347411_brief1.Designer.cs">
       <DependentUpon>202403290347411_brief1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202403300744551_display.cs" />
+    <Compile Include="Migrations\202403300744551_display.Designer.cs">
+      <DependentUpon>202403300744551_display.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BookStoreContext.cs" />
@@ -1668,6 +1672,7 @@
     <Content Include="Views\Stationeries\Details.cshtml" />
     <Content Include="Views\Stationeries\Edit.cshtml" />
     <Content Include="Views\Stationeries\Index.cshtml" />
+    <Content Include="Views\Shared\_Account.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1708,6 +1713,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202403290347411_brief1.resx">
       <DependentUpon>202403290347411_brief1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202403300744551_display.resx">
+      <DependentUpon>202403300744551_display.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

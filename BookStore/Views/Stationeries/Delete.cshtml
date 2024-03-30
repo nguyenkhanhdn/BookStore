@@ -33,7 +33,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Brief)
+            @Html.Raw(Model.Brief)
+            @*@Html.DisplayFor(model => model.Brief)*@
         </dd>
 
         <dt>
